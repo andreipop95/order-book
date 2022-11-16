@@ -1,0 +1,15 @@
+  Part B
+  Suggestions for making the classes better suited for real-life, latency-sensitive trading operations
+
+  1. Order - size property - AtomicInt
+      This will ensure that there are no race conditions when updating the size of an Order
+
+  2. Thread safe structuresPriceBook structure should be synchronized - it should not allow multiple threads to access / perform modifications at once on one structure
+      Each of the data structures below should be synchronized
+          HashMap<Double, LinkedHashSet<Order>> bids
+          HashMap<Double, LinkedHashSet<Order>> offers
+          PriceBook bidsPriceBook
+          PriceBook bidsPriceBook
+      An operation regarding bid data structure should not block another operation done for offers (these operations can run in parallel)
+
+  3. Add concurrency tests - make sure that all the concurrency issues are solved (multi threads environment)
